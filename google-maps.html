@@ -60,6 +60,12 @@
   let geocoder;
   let markers = [];
   let infoWindow;
+  let justStarted = true;
+
+  let params = new URLSearchParams(window.location.search);
+
+  // Get specific values
+  let mycategorys = params.get("category");
 
   const BASE_API = "https://webflow-writing-meets-neighbourhood.onrender.com";
 
@@ -95,9 +101,18 @@
         console.log(categories);
 
         document.getElementById("locationSelect").innerHTML = locationSelect;
+        if (mycategorys && justStarted) {
+          justStarted = false;
+          document
+            .getElementById("locationSelect")
+            .value = mycategorys.replaceAll(" ", "-");
+          handleChange({ target: { value: mycategorys.replaceAll("-", " ") } });
+        }
       })
       .then((data) => console.log(data)) // will list all sites + IDs
       .catch((err) => console.error(err));
+
+    return true;
   }
 
   function addGroupMarkers(locations, group) {
@@ -142,7 +157,7 @@
   async function initMap() {
     const crossings = { lat: 40.82059103245881, lng: -73.92833846965326 };
 
-    await getLocation();
+    const letswait = await getLocation();
 
     geocoder = new google.maps.Geocoder();
     infoWindow = new google.maps.InfoWindow();
