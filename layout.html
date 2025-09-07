@@ -101,11 +101,7 @@
     <section class="section" id="categories" onclick="handleSelect(event)">
       <h2>Explore the Neighborhood</h2>
 
-      <a
-        href="https://connectwithdevjerry.github.io/view-map-locations/google-maps.html"
-        class="category"
-        id="Food & Drink"
-      >
+      <a href="#" class="category" id="Food & Drink">
         <div class="category-text">
           <h3>Food &amp; Drink</h3>
           <p>Culinary creativity, local flavor, and old school gems.</p>
@@ -113,11 +109,7 @@
         <span class="arrow">↗</span>
       </a>
 
-      <a
-        href="https://connectwithdevjerry.github.io/view-map-locations/google-maps.html"
-        class="category"
-        id="Shopping & Services"
-      >
+      <a href="#" class="category" id="Shopping & Services">
         <div class="category-text">
           <h3>Parks &amp; Green Spaces</h3>
           <p>Where movement, nature, and moments of reflection meet.</p>
@@ -125,11 +117,7 @@
         <span class="arrow">↗</span>
       </a>
 
-      <a
-        href="https://connectwithdevjerry.github.io/view-map-locations/google-maps.html"
-        class="category"
-        id="Arts & Culture"
-      >
+      <a href="#" class="category" id="Arts & Culture">
         <div class="category-text">
           <h3>Art &amp; Culture</h3>
           <p>Street poetry, gallery walls, and creative community.</p>
@@ -137,11 +125,7 @@
         <span class="arrow">↗</span>
       </a>
 
-      <a
-        href="https://connectwithdevjerry.github.io/view-map-locations/google-maps.html"
-        class="category"
-        id="Nightlife & After Hours"
-      >
+      <a href="#" class="category" id="Nightlife & After Hours">
         <div class="category-text">
           <h3>Nightlife &amp; After Hours</h3>
           <p>The beat doesn’t stop when the sun sets.</p>
@@ -149,11 +133,7 @@
         <span class="arrow">↗</span>
       </a>
 
-      <a
-        href="https://connectwithdevjerry.github.io/view-map-locations/google-maps.html"
-        class="category"
-        id="Access & Transportation"
-      >
+      <a href="#" class="category" id="Access & Transportation">
         <div class="category-text">
           <h3>Access &amp; Transportation</h3>
           <p>In the city, but with space to breathe.</p>
@@ -162,17 +142,163 @@
       </a>
     </section>
 
-    <div class="map">
-      <!-- Replace with your own map -->
+    <div
+      class="map"
+      style="width: 100%; height: 450px; overflow: hidden; border-radius: 12px"
+    >
       <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3021.851631728969!2d-73.9500!3d40.8200"
-      ></iframe>
+        src="https://www.google.com/maps?q=40.82059103245881,-73.92833846965326&z=15&output=embed"
+        width="600"
+        height="450"
+        style="
+          border: 0;
+          filter: invert(90%) hue-rotate(180deg) contrast(85%) brightness(80%);
+        "
+        allowfullscreen
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      >
+      </iframe>
     </div>
+
+    <script>
+      function initMap() {
+        var location = { lat: 40.82059103245881, lng: -73.92833846965326 };
+        var map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 14,
+          center: location,
+          styles: stylesArray,
+        });
+        new google.maps.Marker({ position: location, map: map });
+      }
+
+      var stylesArray = [
+        {
+          featureType: "landscape",
+          elementType: "geometry.fill",
+          stylers: [
+            {
+              color: "#f0f0f0",
+            },
+          ],
+        },
+        {
+          featureType: "landscape",
+          elementType: "labels",
+          stylers: [
+            {
+              visibility: "on",
+            },
+          ],
+        },
+        {
+          featureType: "landscape.man_made",
+          elementType: "geometry.fill",
+          stylers: [
+            {
+              color: "#f0f0f0",
+            },
+          ],
+        },
+        {
+          featureType: "landscape.man_made",
+          elementType: "geometry.stroke",
+          stylers: [
+            {
+              visibility: "off",
+            },
+          ],
+        },
+        {
+          featureType: "poi",
+          elementType: "geometry.fill",
+          stylers: [
+            {
+              color: "#f0f0f0",
+            },
+          ],
+        },
+        {
+          featureType: "poi",
+          elementType: "labels",
+          stylers: [
+            {
+              visibility: "on",
+            },
+          ],
+        },
+        {
+          featureType: "poi.park",
+          elementType: "geometry.fill",
+          stylers: [
+            {
+              color: "#f0f0f0",
+            },
+          ],
+        },
+        {
+          featureType: "road",
+          elementType: "labels",
+          stylers: [
+            {
+              visibility: "on",
+            },
+          ],
+        },
+        {
+          featureType: "road.highway",
+          stylers: [
+            {
+              color: "#ebebeb",
+            },
+          ],
+        },
+        {
+          featureType: "road.local",
+          elementType: "geometry.fill",
+          stylers: [
+            {
+              color: "#ffffff",
+            },
+          ],
+        },
+        {
+          featureType: "transit",
+          elementType: "labels",
+          stylers: [
+            {
+              color: "#ffffff",
+            },
+            {
+              visibility: "simplified",
+            },
+          ],
+        },
+        {
+          featureType: "water",
+          elementType: "geometry.fill",
+          stylers: [
+            {
+              color: "#d0dce7",
+            },
+          ],
+        },
+        {
+          featureType: "water",
+          elementType: "labels",
+          stylers: [
+            {
+              color: "#ffffff",
+            },
+          ],
+        },
+      ];
+    </script>
     <script>
       function handleSelect(event) {
         event.preventDefault();
         const category = event.target.closest(".category");
-        alert(category.id);
+        // alert(category.id);
         if (category) {
           const categoryId = category.id;
           const baseUrl = "google-maps.html"; // Change to your actual map page URL
