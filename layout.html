@@ -234,7 +234,31 @@
             });
 
             marker.addListener("mouseover", () => {
-              infoWindow.setContent(`<h3>${group}</h3><p>${locationName}</p>`);
+              console.log(group, locationName);
+
+              const content = `
+                <div style="
+                  font-family: Arial, sans-serif;
+                  padding: 10px 15px;
+                  border-radius: 8px;
+                  background: #ffffff;
+                  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+                  min-width: 180px;
+                ">
+                  <h3 style="
+                    margin: 0 0 5px 0;
+                    font-size: 16px;
+                    color: #1a73e8;
+                  ">${group}</h3>
+                  <p style="
+                    margin: 0;
+                    font-size: 14px;
+                    color: #333333;
+                  ">${locationName}</p>
+                </div>
+              `;
+
+              infoWindow.setContent(content);
               infoWindow.open(map, marker);
             });
 
